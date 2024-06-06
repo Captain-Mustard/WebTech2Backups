@@ -11,17 +11,17 @@ if ($investment === FALSE) {
     $error_message = 'Investment must be greater than zero.';
     // validate interest rate
 } else if ($interest_rate === FALSE) {
-    $errMsg = 'Interest rate must be a valid number.';
+    $error_message = 'Interest rate must be a valid number.';
 } else if ($years <= 0) {
-    $errMsg = "Interest rate must be greater than zero.";
+    $error_message = "Interest rate must be greater than zero.";
 } else if ($years === FALSE) {
-    $errMsg = "Years must be a valid whole number.";
+    $error_message = "Years must be a valid whole number.";
 } else if ($years <= 0) {
-    $errMsg = "Years must be greater than zero.";
+    $error_message = "Years must be greater than zero.";
 } else if ($years > 30) {
-    $errMsg = "Years must be less than 31.";
+    $error_message = "Years must be less than 31.";
 } else {
-    $errMsg = '';
+    $error_message = '';
 }
 
 // if an error message exists, go to the index page
