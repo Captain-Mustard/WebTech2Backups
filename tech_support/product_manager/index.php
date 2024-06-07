@@ -22,6 +22,8 @@ if ($action == 'listProducts') {
     header("Location: .");
 } else if ($action == 'showAddForm') {
     // ???
+    header("Location: product_add.php");
+    exit;
 } else if ($action == 'addProduct') {
     $code = filter_input(INPUT_POST, 'code');
     $name = filter_input(INPUT_POST, 'name');
