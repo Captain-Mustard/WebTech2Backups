@@ -19,6 +19,7 @@ if ($action == 'listProducts') {
     $productCode = filter_input(INPUT_POST, 'productCode');
     //Delete product
     // ???
+    deleteProduct($productCode);
     header("Location: .");
 } else if ($action == 'showAddForm') {
     // ???
