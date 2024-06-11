@@ -32,14 +32,40 @@ if ($action == 'listProducts') {
     $releaseDate = filter_input(INPUT_POST, 'releaseDate');
 
     // Validate the inputs
-    if ( $code === NULL || $name === FALSE || 
+    
+    if ( $code === NULL ) {
+        $error = "Code is required.";
+        include('../errors/error.php');
+
+    } else if ( $name === NULL ) {
+        $error = "Name is required.";
+        include('../errors/error.php');
+
+    } else if ( $releaseDate === NULL ) {
+        $error = "Release Date is required.";
+        include('../errors/error.php');
+
+    } else if ( $code === NULL || $name === FALSE || 
             $version === NULL || $version === FALSE || 
             $releaseDate === NULL) {
         $error = "Invalid product data. Check all fields and try again.";
         include('../errors/error.php');
+    } else if ( $version < 1 ) {
+        $error = "Version must be greater than 0.";
+        include('../errors/error.php');
+
+    } else if ( !is_float($version) ) {
+        $error = "Version must be a valid number.";
+        include('../errors/error.php');
+
+    } else if ( $code === NULL ) {
+        $error = "A product with that code already exists.";
+        include('../errors/error.php');
+
     } else {
         addProduct($code, $name, $version, $releaseDate);
         header("Location: .");
     }
+
 }
 ?>

@@ -78,4 +78,9 @@ function update_product($code, $name, $version, $releaseDate) {
     $statement->closeCursor();
 }
 
+function checkCode($code) {
+    global $db;
+    
+}
+
 ?>
