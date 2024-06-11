@@ -87,6 +87,7 @@ function update_product($code, $name, $version, $releaseDate)
 function checkCode($code)
 {
     global $db;
+    $db = "tech_support";
     global $row;
     $row = 1;
     $result = mysqli_query($db, "SELECT * FROM products");
