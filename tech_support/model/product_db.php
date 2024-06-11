@@ -1,5 +1,6 @@
 <?php
-function getProducts() {
+function getProducts()
+{
     global $db;
     $query = 'SELECT * FROM products
               ORDER BY name';
@@ -10,7 +11,8 @@ function getProducts() {
     return $products;
 }
 
-function get_products_by_customer($email) {
+function get_products_by_customer($email)
+{
     global $db;
     $query = 'SELECT products.productCode, products.name 
               FROM products
@@ -25,7 +27,8 @@ function get_products_by_customer($email) {
     return $products;
 }
 
-function getProduct($productCode) {
+function getProduct($productCode)
+{
     global $db;
     $query = 'SELECT * FROM products
               WHERE productCode = :productCode';
@@ -37,7 +40,8 @@ function getProduct($productCode) {
     return $product;
 }
 
-function deleteProduct($productCode) {
+function deleteProduct($productCode)
+{
     global $db;
     $query = 'DELETE FROM products
               WHERE productCode = :productCode';
@@ -47,7 +51,8 @@ function deleteProduct($productCode) {
     $statement->closeCursor();
 }
 
-function addProduct($code, $name, $version, $releaseDate) {
+function addProduct($code, $name, $version, $releaseDate)
+{
     global $db;
     $query = 'INSERT INTO products
                  (productCode, name, version, releaseDate)
@@ -62,7 +67,8 @@ function addProduct($code, $name, $version, $releaseDate) {
     $statement->closeCursor();
 }
 
-function update_product($code, $name, $version, $releaseDate) {
+function update_product($code, $name, $version, $releaseDate)
+{
     global $db;
     $query = 'UPDATE products
               SET name = :name,
@@ -78,9 +84,18 @@ function update_product($code, $name, $version, $releaseDate) {
     $statement->closeCursor();
 }
 
-function checkCode($code) {
+function checkCode($code)
+{
     global $db;
-    
+    global $row;
+    $row = 1;
+    $result = mysqli_query($db, "SELECT * FROM products");
+    $end = true;
+    while ($row = mysqli_fetch_array($result) && $end) {
+        if (strcmp($row['productCode'], $code) == 0)
+            $end = false;
+    }
+    return $end;
 }
 
 ?>

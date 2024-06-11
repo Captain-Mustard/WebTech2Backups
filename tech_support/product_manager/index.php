@@ -1,6 +1,6 @@
 <?php
-require('../model/database.php');
-require('../model/product_db.php');
+require ('../model/database.php');
+require ('../model/product_db.php');
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action === NULL) {
@@ -14,7 +14,7 @@ if ($action == 'listProducts') {
     // Get product data
     $products = getProducts();
     // Display the product list
-    include('product_list.php');
+    include ('product_list.php');
 } else if ($action == 'deleteProduct') {
     $productCode = filter_input(INPUT_POST, 'productCode');
     //Delete product
@@ -32,35 +32,37 @@ if ($action == 'listProducts') {
     $releaseDate = filter_input(INPUT_POST, 'releaseDate');
 
     // Validate the inputs
-    
-    if ( $code === NULL ) {
+
+    if ($code === NULL) {
         $error = "Code is required.";
-        include('../errors/error.php');
+        include ('../errors/error.php');
 
-    } else if ( $name === NULL ) {
+    } else if ($name === NULL) {
         $error = "Name is required.";
-        include('../errors/error.php');
+        include ('../errors/error.php');
 
-    } else if ( $releaseDate === NULL ) {
+    } else if ($releaseDate === NULL) {
         $error = "Release Date is required.";
-        include('../errors/error.php');
+        include ('../errors/error.php');
 
-    } else if ( $code === NULL || $name === FALSE || 
-            $version === NULL || $version === FALSE || 
-            $releaseDate === NULL) {
+    } else if (
+        $code === NULL || $name === FALSE ||
+        $version === NULL || $version === FALSE ||
+        $releaseDate === NULL
+    ) {
         $error = "Invalid product data. Check all fields and try again.";
-        include('../errors/error.php');
-    } else if ( $version < 1 ) {
+        include ('../errors/error.php');
+    } else if ($version < 1) {
         $error = "Version must be greater than 0.";
-        include('../errors/error.php');
+        include ('../errors/error.php');
 
-    } else if ( !is_float($version) ) {
+    } else if (!is_float($version)) {
         $error = "Version must be a valid number.";
-        include('../errors/error.php');
+        include ('../errors/error.php');
 
-    } else if ( $code === NULL ) {
+    } else if (!checkCode($code)) {
         $error = "A product with that code already exists.";
-        include('../errors/error.php');
+        include ('../errors/error.php');
 
     } else {
         addProduct($code, $name, $version, $releaseDate);
