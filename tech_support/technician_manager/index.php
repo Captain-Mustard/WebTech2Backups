@@ -17,6 +17,11 @@ if ($action == 'listTechnicians') {
     include ('technician_list.php');
 } else if ($action == 'deleteTechnician') {
     // ???
+    $techID = filter_input(INPUT_POST, 'techID');
+    //Delete technician
+    // ???
+    deleteTechnician($techID);
+    header("Location: .");
 } else if ($action == 'showAddForm') {
     // ???
 } else if ($action == 'addTechnician') {
