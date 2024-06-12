@@ -84,6 +84,8 @@ function update_product($code, $name, $version, $releaseDate)
     $statement->closeCursor();
 }
 
+/*
+This block has been commented out for testing purposes. Uncomment to use.
 function checkCode($code)
 {
     global $db;
@@ -98,5 +100,6 @@ function checkCode($code)
     }
     return $end;
 }
+*/
 
 ?>

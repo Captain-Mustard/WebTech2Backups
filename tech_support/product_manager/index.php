@@ -60,11 +60,14 @@ if ($action == 'listProducts') {
         $error = "Version must be a valid number.";
         include ('../errors/error.php');
 
-    } else if (!checkCode($code)) {
-        $error = "A product with that code already exists.";
-        include ('../errors/error.php');
+    } 
+    // Commented out for testing purposes. Uncomment to use.
+    //else if (!checkCode($code)) {
+        //$error = "A product with that code already exists.";
+        //include ('../errors/error.php');
 
-    } else {
+    //} 
+    else {
         addProduct($code, $name, $version, $releaseDate);
         header("Location: .");
     }
