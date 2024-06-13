@@ -53,11 +53,11 @@ if ($action == 'listTechnicians') {
         include ('../errors/error.php');
 
     } else if (
-        $code === NULL || $name === FALSE ||
-        $version === NULL || $version === FALSE ||
-        $releaseDate === NULL
+        $firstName === NULL || $lastName === FALSE ||
+        $email === NULL || $phone === FALSE ||
+        $password === NULL
     ) {
-        $error = "Invalid product data. Check all fields and try again.";
+        $error = "Invalid technician data. Check all fields and try again.";
         include ('../errors/error.php');
 
     } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -65,7 +65,7 @@ if ($action == 'listTechnicians') {
         include ('../errors/error.php');
 
     } else {
-        addProduct($code, $name, $version, $releaseDate);
+        addTechnician($fistName, $lastName, $email, $phone, $password);
         header("Location: .");
     }
 }
