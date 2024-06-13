@@ -14,10 +14,10 @@
         <input type="text" name="email"><br>
 
         <label>Phone Number:</label>
-        <input type="text" name="phone" />
+        <input type="text" name="phone" /><br>
 
         <label>Password:</label>
-        <input type="text" name="password" />
+        <input type="text" name="password" /><br>
 
         <label>&nbsp;</label>
         <input type="submit" value="Add Technician" /><br>

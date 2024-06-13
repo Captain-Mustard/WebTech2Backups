@@ -24,7 +24,49 @@ if ($action == 'listTechnicians') {
     header("Location: .");
 } else if ($action == 'showAddForm') {
     // ???
+    header("Location: technician_add.php");
+    exit;
 } else if ($action == 'addTechnician') {
+    $firstName = filter_input(INPUT_POST, 'firstName');
+    $lastName = filter_input(INPUT_POST, 'lastName');
+    $email = filter_input(INPUT_POST, 'email');
+    $phone = filter_input(INPUT_POST, 'phone');
+    $password = filter_input(INPUT_POST, 'password');
+
+
     // Validate the inputs
+
+    if ($firstName === NULL) {
+        $error = "First Name is required.";
+        include ('../errors/error.php');
+
+    } else if ($lastName === NULL) {
+        $error = "Last Name is required.";
+        include ('../errors/error.php');
+
+    } else if ($phone === NULL) {
+        $error = "Phone Number is required.";
+        include ('../errors/error.php');
+
+    } else if ($password === NULL) {
+        $error = "Password is required.";
+        include ('../errors/error.php');
+
+    } else if (
+        $code === NULL || $name === FALSE ||
+        $version === NULL || $version === FALSE ||
+        $releaseDate === NULL
+    ) {
+        $error = "Invalid product data. Check all fields and try again.";
+        include ('../errors/error.php');
+
+    } else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $error = "Email address is not valid.";
+        include ('../errors/error.php');
+
+    } else {
+        addProduct($code, $name, $version, $releaseDate);
+        header("Location: .");
+    }
 }
 ?>
