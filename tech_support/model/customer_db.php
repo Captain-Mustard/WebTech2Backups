@@ -13,6 +13,15 @@ function getCustomers() {
 
 function getCustomer_lastName($lastName) {
     // ???
+    global $db;
+    $query = 'SELECT * FROM customers
+              WHERE lastName = :lastName';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':lastName', $lastName);
+    $statement->execute();
+    $customer = $statement->fetch();
+    $statement->closeCursor();
+    return $customer;
 }
 
 function getCustomer($customerId) {
@@ -30,7 +39,17 @@ function getCustomer($customerId) {
 
 function get_customer_by_email($email) {
     // ???
+    global $db;
+    $query = 'SELECT * FROM customers
+              WHERE email = :email';
+    $statement = $db->prepare($query);
+    $statement->bindValue(':email', $email);
+    $statement->execute();
+    $customer = $statement->fetch();
+    $statement->closeCursor();
+    return $customer;
 }
+
 
 function deleteCustomer($customerId) {
     // ???
